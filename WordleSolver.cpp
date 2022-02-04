@@ -46,11 +46,9 @@ int main()
 	ifstream file("ES.txt");
 	string line;
 
-	getline(file, line);
 	while (!file.eof())
 	{
 		getline(file, line);
-		line.erase(0, line.find(" ") + 1);
 		palabras.push_back(line);
 	}
 	file.close();
