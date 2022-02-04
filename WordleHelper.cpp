@@ -4,21 +4,36 @@
 using namespace std;
 
 const int longitudpalabra = 5;
+const char CUALQUIERA = '*';
 
-void pedirPalabra(char palabra[longitudpalabra], vector<char> &letrasquitar)
+void pedirPalabra(char palabra[longitudpalabra], vector<char> &letrasquitar, vector<char> &letrasagregar)
 {
-	string aux;
-	cout << "Ingrese una palabra de 5 letras: (##### - LETRASAQUITAR): ";
-	getline(cin >> ws, aux);
+	string entrada;
+	string letrasmenos;
+	string letrasmas;
+	cout << "Para los campos vacios (***** +  - )"<<endl<<endl;
+	cout << "Ingrese una palabra: (##### + CONTIENELETRAS - NOTIENELETRAS): ";
+	getline(cin >> ws, entrada);
+	cout<< "Palabra:";
 	for (int i = 0; i < longitudpalabra; i++)
 	{
-		palabra[i] = aux.at(i);
+		palabra[i] = entrada.at(i);
+		cout<<entrada.at(i);
 	}
-	aux.erase(0, aux.find("-") + 2);
-	for (int i = 0; i < aux.length(); i++)
+	cout <<"."<< endl;
+	letrasmas = entrada.substr(entrada.find("+") + 2, entrada.find("-") - entrada.find("+") - 3);
+	cout << "Letras a agregar:" << letrasmas <<"."<< endl;
+	for (int i = 0; i < letrasmas.length(); i++)
 	{
-		letrasquitar.push_back(aux.at(i));
+		letrasagregar.push_back(letrasmas.at(i));
 	}
+	letrasmenos = entrada.substr(entrada.find("-") + 2, entrada.length() - entrada.find("-") - 2);
+	cout << "Letras a quitar:" << letrasmenos <<"."<< endl;
+	for (int i = 0; i < letrasmenos.length(); i++)
+	{
+		letrasquitar.push_back(letrasmenos.at(i));
+	}
+	cout << endl << "PALABRAS CANDIDATAS:" << endl;
 }
 
 int main()
@@ -46,10 +61,13 @@ int main()
 
 	char palabra[longitudpalabra];
 	vector<char> letrasquitar;
-	pedirPalabra(palabra, letrasquitar);
+	vector<char> letrasagregar;
+	bool contieneletra = false;
+	bool nocontieneletra = true;
+	bool letrasconinciden = true;
 
-	bool letrasconinciden;
-	bool condition = true;
+	pedirPalabra(palabra, letrasquitar, letrasagregar);
+	
 	for (int i = 0; i < palabras_cortas.size(); i++)
 	{
 		for (int j = 0; j < palabras_cortas[i].length(); j++)
@@ -58,14 +76,20 @@ int main()
 			{
 				if (palabras_cortas[i].at(j) == letrasquitar.at(k))
 				{
-					condition = false;
+					nocontieneletra = false;
+				}
+			}
+			for (int k = 0; k < letrasagregar.size(); k++)
+			{
+				if (palabras_cortas[i].at(j) == letrasagregar.at(k))
+				{
+					contieneletra = true;
 				}
 			}
 		}
-		letrasconinciden = true;
 		for (int j = 0; j < longitudpalabra; j++)
 		{
-			if (palabra[j] != '#')
+			if (palabra[j] != CUALQUIERA)
 			{
 				if (palabras_cortas[i].at(j) != palabra[j])
 				{
@@ -73,11 +97,17 @@ int main()
 				}
 			}
 		}
-		if (condition && letrasconinciden)
+		if(letrasagregar.empty())
+		{
+			contieneletra = true;
+		}
+		if (nocontieneletra && letrasconinciden && contieneletra)
 		{
 			cout << palabras_cortas[i] << endl;
 		}
-		condition = true;
+		contieneletra = false;
+		nocontieneletra = true;
+		letrasconinciden = true;
 	}
 
 	file.close();
