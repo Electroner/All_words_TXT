@@ -11,29 +11,31 @@ void pedirPalabra(char palabra[longitudpalabra], vector<char> &letrasquitar, vec
 	string entrada;
 	string letrasmenos;
 	string letrasmas;
-	cout << "Para los campos vacios (***** +  - )"<<endl<<endl;
+	cout << "----------------------------------------------------------------------------" << endl;
+	cout << "Para los campos vacios (***** +  - )" << endl << endl;
 	cout << "Ingrese una palabra: (##### + CONTIENELETRAS - NOTIENELETRAS): ";
 	getline(cin >> ws, entrada);
-	cout<< "Palabra:";
+	cout << "Palabra:";
 	for (int i = 0; i < longitudpalabra; i++)
 	{
 		palabra[i] = entrada.at(i);
-		cout<<entrada.at(i);
+		cout << entrada.at(i);
 	}
-	cout <<"."<< endl;
+	cout << "." << endl;
 	letrasmas = entrada.substr(entrada.find("+") + 2, entrada.find("-") - entrada.find("+") - 3);
-	cout << "Letras a agregar:" << letrasmas <<"."<< endl;
+	cout << "Letras a agregar:" << letrasmas << "." << endl;
 	for (int i = 0; i < letrasmas.length(); i++)
 	{
 		letrasagregar.push_back(letrasmas.at(i));
 	}
 	letrasmenos = entrada.substr(entrada.find("-") + 2, entrada.length() - entrada.find("-") - 2);
-	cout << "Letras a quitar:" << letrasmenos <<"."<< endl;
+	cout << "Letras a quitar:" << letrasmenos << "." << endl;
 	for (int i = 0; i < letrasmenos.length(); i++)
 	{
 		letrasquitar.push_back(letrasmenos.at(i));
 	}
-	cout << endl << "PALABRAS CANDIDATAS:" << endl;
+	cout << endl
+		 << "PALABRAS CANDIDATAS:" << endl;
 }
 
 int main()
@@ -50,7 +52,7 @@ int main()
 		line.erase(0, line.find(" ") + 1);
 		palabras.push_back(line);
 	}
-
+	file.close();
 	for (int i = 0; i < palabras.size(); i++)
 	{
 		if (palabras[i].size() == longitudpalabra)
@@ -62,54 +64,60 @@ int main()
 	char palabra[longitudpalabra];
 	vector<char> letrasquitar;
 	vector<char> letrasagregar;
-	bool contieneletra = false;
-	bool nocontieneletra = true;
-	bool letrasconinciden = true;
 
-	pedirPalabra(palabra, letrasquitar, letrasagregar);
-	
-	for (int i = 0; i < palabras_cortas.size(); i++)
+	while (true)
 	{
-		for (int j = 0; j < palabras_cortas[i].length(); j++)
-		{
-			for (int k = 0; k < letrasquitar.size(); k++)
-			{
-				if (palabras_cortas[i].at(j) == letrasquitar.at(k))
-				{
-					nocontieneletra = false;
-				}
-			}
-			for (int k = 0; k < letrasagregar.size(); k++)
-			{
-				if (palabras_cortas[i].at(j) == letrasagregar.at(k))
-				{
-					contieneletra = true;
-				}
-			}
-		}
-		for (int j = 0; j < longitudpalabra; j++)
-		{
-			if (palabra[j] != CUALQUIERA)
-			{
-				if (palabras_cortas[i].at(j) != palabra[j])
-				{
-					letrasconinciden = false;
-				}
-			}
-		}
-		if(letrasagregar.empty())
-		{
-			contieneletra = true;
-		}
-		if (nocontieneletra && letrasconinciden && contieneletra)
-		{
-			cout << palabras_cortas[i] << endl;
-		}
-		contieneletra = false;
-		nocontieneletra = true;
-		letrasconinciden = true;
-	}
+		int contador = 0;
+		bool contieneletra = false;
+		bool nocontieneletra = true;
+		bool letrasconinciden = true;
 
-	file.close();
+		pedirPalabra(palabra, letrasquitar, letrasagregar);
+
+		for (int i = 0; i < palabras_cortas.size(); i++)
+		{
+			for (int j = 0; j < palabras_cortas[i].length(); j++)
+			{
+				for (int k = 0; k < letrasquitar.size(); k++)
+				{
+					if (palabras_cortas[i].at(j) == letrasquitar.at(k))
+					{
+						nocontieneletra = false;
+					}
+				}
+				for (int k = 0; k < letrasagregar.size(); k++)
+				{
+					if (palabras_cortas[i].at(j) == letrasagregar.at(k))
+					{
+						contieneletra = true;
+					}
+				}
+			}
+			for (int j = 0; j < longitudpalabra; j++)
+			{
+				if (palabra[j] != CUALQUIERA)
+				{
+					if (palabras_cortas[i].at(j) != palabra[j])
+					{
+						letrasconinciden = false;
+					}
+				}
+			}
+			if (letrasagregar.empty())
+			{
+				contieneletra = true;
+			}
+			if (nocontieneletra && letrasconinciden && contieneletra)
+			{
+				cout << palabras_cortas[i] << endl;
+				contador++;
+			}
+			contieneletra = false;
+			nocontieneletra = true;
+			letrasconinciden = true;
+		}
+		cout << endl << "Cantidad de palabras candidatas: " << contador << endl;
+	}
+	
 	return 0;
 }
