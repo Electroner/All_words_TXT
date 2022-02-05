@@ -1,5 +1,5 @@
 # WORDLE SOLVER ANY DICTIONARY
-Program that helps with wordle Just have to write the ***** +LETERSINIT -NOLETERSINIT
+Program that helps with wordle Just have to write the ***** +LETTERSINIT -NOLETTERSINIT
 
 ## USAGE
 
