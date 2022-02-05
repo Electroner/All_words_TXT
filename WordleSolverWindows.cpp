@@ -51,7 +51,7 @@ void pedirPalabra(char palabra[longitudpalabra], vector<char>& letrasquitar, vec
 		letrasagregar.push_back(letrasmas.at(i));
 	}
 	letrasmenos = entrada.substr(entrada.find("-") + 1, entrada.length() - entrada.find("-") - 1);
-	cout << "LETTER TO SUBTRACT:" << letrasmenos << "." << endl;
+	cout << "LETTERS TO SUBTRACT:" << letrasmenos << "." << endl;
 	for (int i = 0; i < letrasmenos.length(); i++)
 	{
 		letrasquitar.push_back(letrasmenos.at(i));
