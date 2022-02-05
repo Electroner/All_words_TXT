@@ -12,12 +12,11 @@ void pedirPalabra(char palabra[longitudpalabra], vector<char> &letrasquitar, vec
 	string entrada;
 	string letrasmenos;
 	string letrasmas;
-	cout << "----------------------------------------------------------------------------------------------" << endl;
-	cout << "Para los campos vacios (***** + - )" << endl
-		 << endl;
-	cout << "Ingrese una palabra: (***** +CONTIENELETRAS -NOTIENELETRAS): ";
+	cout << "----------------------------------------------------------------------------------------------------" << endl;
+	cout << "For a empty search: (***** + - )" << endl << endl;
+	cout << "Insert a word with: (***** +LettersToAdd -LettersToSubtract): ";
 	getline(cin >> ws, entrada);
-	cout << "Palabra:";
+	cout << "WORD:";
 	for (int i = 0; i < longitudpalabra; i++)
 	{
 		palabra[i] = entrada.at(i);
@@ -25,19 +24,18 @@ void pedirPalabra(char palabra[longitudpalabra], vector<char> &letrasquitar, vec
 	}
 	cout << "." << endl;
 	letrasmas = entrada.substr(entrada.find("+") + 1, entrada.find("-") - entrada.find("+") - 2);
-	cout << "Letras a agregar:" << letrasmas << "." << endl;
+	cout << "LETTERS TO ADD:" << letrasmas << "." << endl;
 	for (int i = 0; i < letrasmas.length(); i++)
 	{
 		letrasagregar.push_back(letrasmas.at(i));
 	}
 	letrasmenos = entrada.substr(entrada.find("-") + 1, entrada.length() - entrada.find("-") - 1);
-	cout << "Letras a quitar:" << letrasmenos << "." << endl;
+	cout << "LETTERS TO SUBTRACT:" << letrasmenos << "." << endl;
 	for (int i = 0; i < letrasmenos.length(); i++)
 	{
 		letrasquitar.push_back(letrasmenos.at(i));
 	}
-	cout << endl
-		 << "PALABRAS CANDIDATAS:" << endl;
+	cout << endl << "CANDIDATE WORDS:" << endl;
 }
 
 int main()
@@ -142,7 +140,7 @@ int main()
 				{
 					cout << palabras_candidatas_sinletras[i] << endl;
 				}
-				cout << "Hay " << palabras_candidatas_sinletras.size() << " palabras candidatas." << endl;
+				cout << "There is " << palabras_candidatas_sinletras.size() << " candidate words." << endl;
 				
 				palabras_candidatas_sinletras.clear();
 			}
