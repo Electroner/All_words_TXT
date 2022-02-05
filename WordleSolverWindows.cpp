@@ -168,7 +168,7 @@ int main()
 				{
 					cout << palabras_candidatas_sinletras[i] << endl;
 				}
-				cout << "Hay " << palabras_candidatas_sinletras.size() << " palabras candidatas." << endl;
+				cout << "There is " << palabras_candidatas_sinletras.size() << " candidate words." << endl;
 
 				palabras_candidatas_sinletras.clear();
 			}
