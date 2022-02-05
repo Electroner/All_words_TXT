@@ -17,3 +17,4 @@ If u want to make a empty entry goes like this: "***** + - "
 ## PROGRAMS
 
 In the repository are the compiled programs for windows and linux.
+Windows can Work with any filename while linux only with ES.txt
