@@ -18,3 +18,7 @@ If u want to make a empty entry goes like this: "***** + - "
 
 In the repository are the compiled programs for windows and linux.
 Windows can Work with any filename while linux only with ES.txt
+
+## DICTIONARIES
+
+Every dictionary is in ascii format, all acents has been removed and every thing is capital.
