@@ -21,4 +21,4 @@ Windows can Work with any filename while linux only with ES.txt
 
 ## DICTIONARIES
 
-Every dictionary is in ascii format, all acents has been removed and every thing is capital.
+Every dictionary is in ascii format, all acents has been removed and everthing is capital.
