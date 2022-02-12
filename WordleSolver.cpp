@@ -19,8 +19,10 @@
 
 using namespace std;
 
+unsigned int longitudpalabra;
+
 #ifdef DEFAULTLENGTH
-unsigned int longitudpalabra = 5;
+longitudpalabra = 5;
 #endif // DEFAULTLENGTH
 
 const char CUALQUIERA = '*';
