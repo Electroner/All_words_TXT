@@ -22,3 +22,14 @@ Both Windows and linux open a Dialog to open the dictionary selecting the path.
 ## DICTIONARIES
 
 Every dictionary is in ascii format, all acents has been removed and everthing is capital.
+
+## COMPILE
+You can select the SO modifying the header of the Cpp.
+#define WINDOWS
+//#define LINUX
+
+Commenting the line that you arent using.
+
+Moreover there is a option if u want to change the LENGTH of the words. with the first line. 
+
+#define DEFAULTLENGTH, if you let it uncomment the program will use 5 as the LENGTH. If commented the program will ask for the lenght.
