@@ -74,6 +74,10 @@ void pedirPalabra(vector<char>& palabra, vector<char>& noletrasposicion, vector<
 	cout << "For a empty search (exaplme length of 5): (***** ..... + - )" << endl << endl;
 	cout << "WORD (example length of 5) -> (***** ..... +LettersToAdd -LettersToSubtract): ";
 	getline(cin >> ws, entrada);
+	if(entrada >= ((longitudpalabra*2)+5)){
+		cout << "Input String error"
+		exit(3);
+	}
 	cout << "WORD:";
 	for (int i = 0; i < longitudpalabra; i++)
 	{
